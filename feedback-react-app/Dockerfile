@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
+ENV NODE_OPTIONS="--openssl-legacy-provider"
+
 RUN yarn install
 
 COPY . .
