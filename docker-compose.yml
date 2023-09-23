@@ -4,6 +4,10 @@ services:
     build:
       context: ./Desafio01
       dockerfile: Dockerfile
+    environment:
+      - AWS_ACCESS_KEY_ID=AKIAUTD6MGMVTKLYT6LD
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_REGION=us-east-1
     ports:
       - "8080:8080"
     depends_on:
