@@ -1,4 +1,6 @@
-FROM 3.9.4-eclipse-temurin-17 as build
+FROM openjdk:17-slim as build
+
+RUN apt-get update && apt-get install -y maven
 
 WORKDIR /app
 
@@ -6,11 +8,11 @@ COPY pom.xml .
 RUN mvn dependency:go-offline
 
 COPY src ./src
-RUN mvn package
+RUN mvn clean install -DskipTests
 
-FROM openjdk:17-jre-centos7
+FROM openjdk:17-slim
 
-COPY --from=build /app/target/Desafio01.jar /app/app.jar
+COPY --from=build /app/target/Desafio01-0.0.1-SNAPSHOT.jar /app/app.jar
 
 EXPOSE 8080
 
