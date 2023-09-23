@@ -1,0 +1,22 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./Desafio01
+      dockerfile: Dockerfile-maven
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./feedback-react-app
+      dockerfile: Dockerfile-react
+    ports:
+      - "3000:3000"
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
