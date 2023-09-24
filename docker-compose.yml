@@ -30,6 +30,7 @@ services:
       - MONGODB_DATABASE=test
   mongo-express:
     image: mongo-express
+    command: ["node", "--unhandled-rejections=strict", "/node_modules/mongo-express/bin/mongo-express"]
     ports:
       - "8081:8081"
     environment:
